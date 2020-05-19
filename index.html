@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>patatap clone</title>
+	<script type="text/javascript" src="assets/js/howler.js"></script>
+	<script type="text/javascript" src="assets/js/paper-full.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/patatapclone.css">
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+	<script type="text/paperscript" canvas="myCanvas" >
+		
+		var keydata={
+			q:{
+				color:'#004ff9',
+				sound:new Howl({
+				src:["assets/sounds/bubbles.mp3"]
+				})
+			},
+			w:{
+				color:'#fff94c',
+				sound:new Howl({
+				src:["assets/sounds/clay.mp3"]
+				})
+			},
+			e:{
+				color:'#6a9113',
+				sound:new Howl({
+				src:["assets/sounds/confetti.mp3"]
+				})
+			},
+			r:{
+				color:'#141517',
+				sound:new Howl({
+				src:["assets/sounds/corona.mp3"]
+				})
+			},
+			t:{
+				color:'#f1f2b5',
+				sound:new Howl({
+				src:["assets/sounds/dotted-spiral.mp3"]
+				})
+			},
+			y:{
+				color:'#135058',
+				sound:new Howl({
+				src:["assets/sounds/flash-1.mp3"]
+				})
+			},
+			u:{
+				color:'#d1913c',
+				sound:new Howl({
+				src:["assets/sounds/flash-2.mp3"]
+				})
+			},
+			i:{
+				color:'#ffd194',
+				sound:new Howl({
+				src:["assets/sounds/flash-3.mp3"]
+				})
+			},
+			o:{
+				color:'#7b4397',
+				sound:new Howl({
+				src:["assets/sounds/glimmer.mp3"]
+				})
+			},
+			p:{
+				color:'#dc2430',
+				sound:new Howl({
+				src:["assets/sounds/moon.mp3"]
+				})
+			},
+			a:{
+				color:'#8e9eab',
+				sound:new Howl({
+				src:["assets/sounds/pinwheel.mp3"]
+				})
+			},
+			s:{
+				color:'#136a8a',
+				sound:new Howl({
+				src:["assets/sounds/piston-1.mp3"]
+				})
+			},
+			d:{
+				color:'#9a8478',
+				sound:new Howl({
+				src:["assets/sounds/piston-2.mp3"]
+				})
+			},
+			f:{
+				color:'#73c8a9',
+				sound:new Howl({
+				src:["assets/sounds/piston 3.mp3"]
+				})
+			},
+			g:{
+				color:'#ff0084',
+				sound:new Howl({
+				src:["assets/sounds/prism-1.mp3"]
+				})
+			},
+			h:{
+				color:'#833ab4',
+				sound:new Howl({
+				src:["assets/sounds/prism-2.mp3"]
+				})
+			},
+			j:{
+				color:'#fd1d1d',
+				sound:new Howl({
+				src:["assets/sounds/prism-3.mp3"]
+				})
+			},
+			k:{
+				color:'#fcb045',
+				sound:new Howl({
+				src:["assets/sounds/splits.mp3"]
+				})
+			},
+			l:{
+				color:'#feac5e',
+				sound:new Howl({
+				src:["assets/sounds/squiggle.mp3"]
+				})
+			},
+			z:{
+				color:'#c779d0',
+				sound:new Howl({
+				src:["assets/sounds/strike.mp3"]
+				})
+			},
+			x:{
+				color:'#4bc0c8',
+				sound:new Howl({
+				src:["assets/sounds/suspension.mp3"]
+				})
+			},
+			c:{
+				color:'#6441a5',
+				sound:new Howl({
+				src:["assets/sounds/timer.mp3"]
+				})
+			},
+			v:{
+				color:'#43cea2',
+				sound:new Howl({
+				src:["assets/sounds/ufo.mp3"]
+				})
+			},
+			b:{
+				color:'#185a9d',
+				sound:new Howl({
+				src:["assets/sounds/veil.mp3"]
+				})
+			},
+			n:{
+				color:'#24fe41',
+				sound:new Howl({
+				src:["assets/sounds/wipe.mp3"]
+				})
+			},
+			m:{
+				color:'#2e1437',
+				sound:new Howl({
+				src:["assets/sounds/zig0zag.mp3"]
+				})
+			}
+		}
+		var circles=[];
+
+		function onKeyDown(event){
+			if(keydata[event.key]){
+				var maxPoint=new Point(view.size.width, view.size.height);
+				var randomPoint=Point.random();
+				var point=maxPoint*randomPoint;
+				var newCircle=new Path.Circle(point,400);
+				newCircle.fillColor=keydata[event.key].color;
+				keydata[event.key].sound.play();
+				circles.push(newCircle);  
+			}
+		}
+		function onFrame(event){
+			for(var i=0;i<circles.length;i++){
+				circles[i].fillColor.hue+=2;
+				circles[i].scale(0.9);
+			}
+		}
+	</script>
+</head>
+<body class="bg">
+	<!-- a canvas is something that enables us to do animations and use svg images on it -->
+	<h1>PATATAP &nbsp; &nbsp; &nbsp; CLONE</h1>
+	<h5>Try pressing keys from A -> Z</h5>
+	<hr>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
